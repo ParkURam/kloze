@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>유저 개인페이지</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>유저 개인 페이지 메인</h1>
+
+   <p>카테고리 1  : <%=user.category[0]%></p>
+   <p>카테고리 2  : <%=user.category[1]%></p>
+   <p>카테고리 3  : <%=user.category[2]%> </p>
+
+   <p>북 마크</p>
+   <p>히스토리</p>
+
+   <p>프로필 사진  : <%=user.profile_img%></p>
+   <p>유저 이름  : <%=user.name%></p>
+   <p>유저 소개  : <%=user.introduction%></p>
+   <p>유저 팔로잉 수  : <%=user.fllowing%></p>
+   <p>유저 팔로워 수  : <%=user.fllower%></p>
+
+   <p>페이스북</p><%=user.facebook%>
+   <p>트위터</p><%=user.twitter%>
+    
+    <button id="testButton">수정하기</button>
+    
+    <a href="/user">임시저장</a>
+    <a href="/user/relationship">완료</a>
+  </body>
+</html>
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+
+
+  
+  $(document).ready(function() {
+    $( "#testButton" ).click(function() {
+      console.log('ok??');
+     var formData = {name:"ravi",age:"31"}; //Array 
+      
+     $.ajax({
+         url : "/@uramPark/edit",
+         type: "POST",
+         data : formData,
+         success: function(data, textStatus, jqXHR)
+         {
+             //data - response from server
+         },
+         error: function (jqXHR, textStatus, errorThrown)
+         {
+      
+         }
+     });
+    });
+  });
+
+
+
+</script>
+

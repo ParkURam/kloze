@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= id %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= id %></h1>
+    <p>Welcome to <%= id %> 유저 페이지</p>
+
+    <p>포스팅 글</p>
+   
+    <p>bookmark</p>
+    <p>전체글 목록</p>
+    <button id="testButton">수정하기</button>
+    <a href="/user/relationship">팔로우 보기</a>
+  </body>
+</html>
+
+
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+
+
+  
+  $(document).ready(function() {
+    $( "#testButton" ).click(function() {
+      console.log('ok??');
+     var formData = {name:"ravi",age:"31"}; //Array 
+      
+     $.ajax({
+         url : "/@uramPark/edit",
+         type: "POST",
+         data : formData,
+         success: function(data, textStatus, jqXHR)
+         {
+             //data - response from server
+         },
+         error: function (jqXHR, textStatus, errorThrown)
+         {
+      
+         }
+     });
+    });
+  });
+
+
+
+</script>
+
