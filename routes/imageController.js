@@ -14,7 +14,7 @@ router.post('/upload', function(req, res){
   userFunction.imageUpload(req, res, function(err, result){
     if(err) res.json({err: err});
 
-    res.json({result : result.path});
+    res.json({result : result});
   	
   });
 });

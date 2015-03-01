@@ -9,10 +9,9 @@ var postFunction = require('./postFunction');
 // });
 
 router.get('/newpost', function(req, res, next) {
-  console.log('roter 접속');
   postFunction.getNewPost(req, res, function(err, result){
     if(err){
-
+      res.render('postEdit', { err : err });
     }else{
       //result[0].category = result[0].category.split(',');
       console.log('category : ', result[0]);

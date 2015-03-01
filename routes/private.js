@@ -30,9 +30,11 @@ router.get('/', function(req, res){
     })
 
   }else if(resultArray == 4){ // 글보기
+    console.log('글보기');
     var domainUrl = req.originalUrl.split('/')[3];
     // 정보 불러오기
     req.body.info = domainUrl;
+    console.log('req.body.info : ', req.body.info);
     postFunction.getPost(req, res, function(err, result){
       res.json({err : err, result : result});
     })
