@@ -7,6 +7,7 @@ var mysqlQuery = require("./mysqlQuery.js");
 var events = require('events');
 var util = require('util');
 
+var session_id = 'b43a6ae0-bcb4-11e4-945a-cb211b311fe2';
 var Common = function(){
     events.EventEmitter.call(this); // call super class constructor
  
@@ -21,7 +22,7 @@ Common.prototype.getUserInfo = function(req, res, callback){
   // 옵션 설정
   var options = [req.session.user_id];
 
-  options = '01dee9d0-b9b6-11e4-893c-dbd867be64d5';
+  options = session_id;
   // 쿼리문 던지기
   blozeUserComm.sendQuery(mysqlQuery.getUserInfo(), options, function(err, result){
     callback(err, result);
@@ -52,7 +53,7 @@ Common.prototype.getUserMain = function(req, res, callback){
   // 옵션 설정
   var options = [req.session.user_id];
 
-  options = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+  options = session_id;
   // 쿼리문 던지기
   blozeUserComm.sendQuery(mysqlQuery.getUserMain(), options, function(err, result){
 
@@ -83,7 +84,7 @@ Common.prototype.fllowRelation = function(req, res, callback){
 
   var fllowModel;
   var options = [
-      {user_id : '82dd7c20-b990-11e4-97c2-597f356c4b04'},
+      {user_id : session_id},
       {fllowing : ['aaa','bbb']}
   ]
   // var options = [
@@ -106,7 +107,7 @@ Common.prototype.fllowDelRelation = function(req, res, callback){
 
   var fllowModel;
   var options = [
-      {user_id : '82dd7c20-b990-11e4-97c2-597f356c4b04'},
+      {user_id : session_id},
       {fllowing : 'aaa'}
   ]
   // var options = [
@@ -141,7 +142,7 @@ Common.prototype.findRelation = function(req, res, callback){
 
   var fllowModel;
   var options = {
-    user_id : "82dd7c20-b990-11e4-97c2-597f356c4b04"
+    user_id : session_id
   };
 
   var temp = {}; // json 수정 temp 객체
@@ -163,21 +164,18 @@ Common.prototype.imageUpload = function(req, res, callback){
   // 옵션 설정
   var options;
 
-  req.session.user_id = 'b43a6ae0-bcb4-11e4-945a-cb211b311fe2';
+  req.session.user_id = session_id;
 
   var imageModel;
   // post_img, profile_img, bg_img 등 받고 모델 만들기
   blozeComm.imageModel(req, function(obj){
     blozeComm.chkModel(obj, function(model){
       imageModel = model;
-      console.log('imageModel : ',imageModel.profile_img.path);
 
       if(imageModel.post_img != undefined){
         // 포스트는 캐시 확인 blozeComm
       }else if(imageModel.profile_img != undefined){
         // 옵션 설정
-        console.log('imageModel : ', imageModel);
-        console.log('imageModel : ', imageModel.profile_img.path);
         var path = imageModel.profile_img.path;
         options = [{profile_img : path}, req.session.user_id];
         // 쿼리문 던지기
@@ -189,12 +187,9 @@ Common.prototype.imageUpload = function(req, res, callback){
       }else if(imageModel.bg_img){
 
       }
-      
 
     });
   })
-  // 해당 키 값 보고 분기 처리
-  
 };
 
 var common = new Common();

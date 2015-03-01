@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 
-var url = 'mongodb://localhost/bloze';
+var url = 'ds029960.mongolab.com:29960/kloze';
 
 var options = {
   //db: { native_parser: true },
-  server: { poolSize: 100 }
+  server: { poolSize: 100 },
  // replset: { rs_name: 'myReplicaSetName' },
-  //user: 'myUserName',
-  //pass: 'myPassword'
+  user: 'crzsnail',
+  pass: '1234'
 }
 
 // var url = 'mongodb://192.168.8.244:25051/db';

@@ -7,6 +7,8 @@ var mysqlQuery = require("./mysqlQuery.js");
 var events = require('events');
 var util = require('util');
 
+var session_id = 'b43a6ae0-bcb4-11e4-945a-cb211b311fe2';
+
 var Common = function(){
     events.EventEmitter.call(this); // call super class constructor
  
@@ -21,7 +23,7 @@ Common.prototype.getNewPost = function(req, res, callback){
   // 옵션 설정
   var options = [req.session.user_id];
 
-  options = 'b43a6ae0-bcb4-11e4-945a-cb211b311fe2';
+  options = session_id;
   console.log('postfunction getNewPost 접속');
   // 쿼리문 던지기
   blozeComm.sendQuery(mysqlQuery.getUserCategory(), options, function(err, result){
@@ -38,7 +40,7 @@ Common.prototype.userMainupdate = function(req, res, callback){
   blozeComm.getUserMain(req, function(user){
       //options = [user, req.session.user_id];
       console.log('use : ', user);
-      options = [user, 'b43a6ae0-bcb4-11e4-945a-cb211b311fe2'];
+      options = [user, session_id];
   });
 
   // 쿼리문 던지기
@@ -51,7 +53,7 @@ Common.prototype.userMainupdate = function(req, res, callback){
 
 // 카테고리 포스트 가져오기
 Common.prototype.getCategoryPost = function(req, res, callback){
-  req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+  req.session.user_id = session_id;
   // 옵션 설정
   var postModel;
   var options;
@@ -73,7 +75,7 @@ Common.prototype.getCategoryPost = function(req, res, callback){
 
 // 카테고리 포스트 가져오기
 Common.prototype.getTempPost = function(req, res, callback){
-  req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+  req.session.user_id = session_id;
   // 옵션 설정
   var postModel;
   var options;
@@ -95,7 +97,7 @@ Common.prototype.getTempPost = function(req, res, callback){
 
 // 포스트 가져오기
 Common.prototype.getPost = function(req, res, callback){
-  req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+  req.session.user_id = session_id;
   // 옵션 설정
   var postModel;
   var options;
@@ -116,7 +118,7 @@ Common.prototype.getPost = function(req, res, callback){
 
 // 포스트 히스토리 가져오기
 Common.prototype.getPostHistory = function(req, res, callback){
-  req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+  req.session.user_id = session_id;
   // 옵션 설정
   var postModel;
   var options;
@@ -136,7 +138,7 @@ Common.prototype.getPostHistory = function(req, res, callback){
 Common.prototype.putNewPost = function(req, res, callback){
   var postModel;
   var options;
-  req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+  req.session.user_id = session_id;
 
   blozeComm.newPostModel(req, function(obj){
     options = [
@@ -158,7 +160,7 @@ Common.prototype.putNewPost = function(req, res, callback){
 Common.prototype.putTempPost = function(req, res, callback){
   var postModel;
    var options;
-   req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+   req.session.user_id = session_id;
 
    blozeComm.postTempModel(req, function(obj){
      options = [
@@ -180,7 +182,7 @@ Common.prototype.putTempPost = function(req, res, callback){
 Common.prototype.putPostRead = function(req, res, callback){
   var postModel;
   var options;
-   req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+   req.session.user_id = session_id;
    blozeComm.postReadModel(req, function(obj){
       options = obj;
    });
@@ -209,7 +211,7 @@ Common.prototype.putPostRead = function(req, res, callback){
 Common.prototype.putPostBookmark = function(req, res, callback){
   var postModel;
   var options;
-   req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+   req.session.user_id = session_id;
    blozeComm.postBookmarkModel(req, function(obj){
       options = obj;
    });
@@ -238,7 +240,7 @@ Common.prototype.putPostBookmark = function(req, res, callback){
 Common.prototype.putPostLike = function(req, res, callback){
   var postModel;
   var options;
-   req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+   req.session.user_id = session_id;
    blozeComm.postLikeModel(req, function(obj){
       options = obj;
    });
@@ -342,7 +344,7 @@ Common.prototype.historyAllList = function(req, res, callback){
   // 옵션 설정
   var postModel;
   var options;
-  req.session.user_id = '563e2fe0-b9b6-11e4-a5ae-fb70400c303c';
+  req.session.user_id = session_id;
   blozeComm.post_model(req, function(model){
     postModel = model;
     options = {
