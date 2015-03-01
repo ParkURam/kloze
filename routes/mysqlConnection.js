@@ -14,7 +14,7 @@ var pool = mysql.createPool({
 	port	: 3306,
 	user	: 'kloze',
 	password : '12345678',
-	database : 'Kloze'
+	database : 'kloze'
 });
 
 

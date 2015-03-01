@@ -171,9 +171,9 @@ Common.prototype.imageUpload = function(req, res, callback){
   blozeComm.imageModel(req, function(obj){
     blozeComm.chkModel(obj, function(model){
       imageModel = model;
+
       if(imageModel.post_img != undefined){
         // 포스트는 캐시 확인 blozeComm
-        callback(null, imageModel.post_img.path);
       }else if(imageModel.profile_img != undefined){
         // 옵션 설정
         var path = imageModel.profile_img.path;
@@ -181,11 +181,11 @@ Common.prototype.imageUpload = function(req, res, callback){
         // 쿼리문 던지기
         blozeUserComm.sendQuery(mysqlQuery.userMainupdate(), options, function(err, result){
           result.path =  imageModel.profile_img.path;
-          callback(err, result.path);
+          callback(err, result);
         });
 
-      }else if(imageModel.bg_img != undefined){
-        callback(null, imageModel.bg_img.path);
+      }else if(imageModel.bg_img){
+
       }
 
     });
