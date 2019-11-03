@@ -21,7 +21,7 @@
     "passport-facebook":"*",
     "passport-kakao":"*",
     "kroknet-passport-google-oauth":"*",
-    "mongoose":"~3.6.20",
+    "mongoose":"~5.7.7",
     "mysql": "~2.0.0",
     "cron": "~1.0.1",
     "async": "~0.2.9",
